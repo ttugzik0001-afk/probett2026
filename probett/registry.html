@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Registry — Bethel &amp; Promise</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ===================== FIXED FLOATING NAVIGATION ===================== -->
+  <header class="nav is-scrolled" style="top: 20px; padding: 0;">
+    <div class="nav__inner" style="border-radius: 100px;">
+      <a href="index.html" class="nav__brand" aria-label="Back home">
+        <img src="assets/images/logo.jpg" alt="Bethel &amp; Promise" class="nav__logo">
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="index.html#story">Our Story</a>
+          <a href="index.html#details">The Day</a>
+          <a href="index.html#schedule">Schedule</a>
+          <a href="index.html#gallery">Gallery</a>
+          <a href="registry.html" style="color: var(--choco);">Registry</a>
+          <a href="index.html#rsvp" class="nav__cta">RSVP</a>
+        </nav>
+
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN REGISTRY CONTENT WORKSPACE ===================== -->
+  <main class="admin-main" style="display: block; width: 100%; padding-top: 140px;">
+    <div class="container" style="max-width: 900px;">
+      
+      <div class="sec-head reveal in">
+        <p class="eyebrow">Gifting</p>
+        <h2 class="sec-title">Registry <em>&amp;</em> Contributions</h2>
+        <div class="divider"><span></span><i></i><span></span></div>
+        <p style="color: var(--choco-400); max-width: 600px; margin: 0 auto; font-size: 0.95rem;">
+          Your presence at our celebration is the greatest gift we could ask for. However, if you wish to honor us with a gift, we have curated a selection of options to help us establish our new home together.
+        </p>
+      </div>
+
+      <!-- TWO-COLUMN WORKSPACE: STORES & CASH CONTRIBUTIONS -->
+      <div class="details__grid" style="grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 32px;">
+        
+        <!-- MODULE CARD 1: Digital Curated Stores -->
+        <article class="detail-card reveal in" style="text-align: left; padding: 40px 32px;">
+          <div class="detail-card__icon" style="margin: 0 0 16px 0;">🎁</div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 8px;">Curated Registries</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 24px; color: var(--choco-400);">Select items directly from our cloud-managed gift storefronts below.</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <a href="https://zola.com" target="_blank" rel="noopener" class="registry-store-row">
+              <div>
+                <span class="store-name">Our Zola Honeymoon Fund</span>
+                <span class="store-url">://zola.com</span>
+              </div>
+              <span class="store-arrow">&rarr;</span>
+            </a>
+
+            <a href="https://amazon.com" target="_blank" rel="noopener" class="registry-store-row">
+              <div>
+                <span class="store-name">Amazon Wedding Registry</span>
+                <span class="store-url">://amazon.com</span>
+              </div>
+              <span class="store-arrow">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- MODULE CARD 2: Traditional Bank Wire Transfers -->
+        <article class="detail-card reveal in" style="text-align: left; padding: 40px 32px; --d: 0.08s;">
+          <div class="detail-card__icon" style="margin: 0 0 16px 0;">🏦</div>
+          <h3 style="font-size: 1.6rem; margin-bottom: 8px;">Direct Cash Transfers</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 24px; color: var(--choco-400);">For cash contributions towards our new home foundation, cash wires can be securely routed below.</p>
+          
+          <div class="bank-account-box">
+            <div class="bank-field">
+              <span class="bank-label">Bank Name</span>
+              <span class="bank-value">GTBank (Guaranty Trust Bank)</span>
+            </div>
+            <div class="bank-field">
+              <span class="bank-label">Account Number</span>
+              <span class="bank-value" style="font-family: var(--serif); font-size: 1.25rem; letter-spacing: 0.05em; font-weight: 500;">0123456789</span>
+            </div>
+            <div class="bank-field">
+              <span class="bank-label">Account Name</span>
+              <span class="bank-value" style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em;">Bethel &amp; Promise Wedding Fund</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== CORE FOOTER ASSEMBLY ===================== -->
+  <footer class="footer" style="margin-top: 80px;">
+    <div class="footer__inner">
+      <div class="footer__mono">B<span>&amp;</span>P</div>
+      <p class="footer__date">19 &middot; 12 &middot; 2026</p>
+      <div class="footer__rule"></div>
+      <p class="footer__copy" style="margin: 0;">Made with love &middot; All rights reserved. #ProBett2026</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

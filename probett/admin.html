@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP Management Control Center — Bethel &amp; Promise</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ===================== MANAGEMENT PANEL HEADER ===================== -->
+  <header class="nav is-scrolled" style="top: 20px; padding: 0;">
+    <div class="nav__inner" style="border-radius: 100px;">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.jpg" alt="Logo" class="nav__logo">
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span class="admin-user-badge" id="adminUserEmail">Operator Dashboard</span>
+        
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        
+        <button id="logoutBtn" class="btn btn--solid" style="padding: 8px 18px; font-size: 0.65rem; border-radius: 50px;">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CORE WORKSPACE MODULE CONTAINER ===================== -->
+  <main class="admin-main" style="display: block; width: 100%; padding-top: 130px;">
+    <div class="container" style="max-width: var(--max);">
+      
+      <!-- TOP LAYER ROW: Operational Summary Performance Cards -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-card__title">Total Responses</span>
+            <span class="metric-card__value" id="countTotal">—</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-card__title">Confirmed</span>
+            <span class="metric-card__value" id="countAttending" style="color: var(--tan-600);">—</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-card__title">Declined</span>
+            <span class="metric-card__value" id="countDeclined">—</span>
+          </div>
+      </div>
+
+      <!-- MIDDLE LAYER ROW: Dynamic PIN Generator Console Component -->
+      <div class="detail-card" style="text-align: left; padding: 24px; margin-bottom: 32px; border-radius: 4px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 4px;">Security PIN Provisioner</h3>
+          <p style="font-size: 0.85rem; margin: 0; color: var(--choco-300);">Generate a temporary 25-minute system authorization code to register additional co-operators.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div id="generatedPinWrapper" class="pin-display-box" style="display: none;">
+            <span id="displayPinValue">------</span>
+            <span id="displayPinTimer">25:00</span>
+          </div>
+          <button id="generatePinBtn" class="btn btn--solid btn--gold" style="padding: 12px 24px; font-size: 0.7rem; margin: 0;">Generate New Code</button>
+        </div>
+      </div>
+            <!-- ADMIN WHATSAPP SHARE BUTTON -->
+      <div class="detail-card" style="text-align: left; padding: 24px; margin-bottom: 32px; border-radius: 4px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 4px;">Guest Invitation Link</h3>
+          <p style="font-size: 0.85rem; margin: 0; color: var(--choco-300);">Share the wedding website directly to WhatsApp groups or individual guests.</p>
+        </div>
+        <a href="https://wa.me/?text=You%20are%20cordially%20invited%20to%20the%20wedding%20of%20Bethel%20%26%20Promise!%20Please%20view%20the%20details%20and%20RSVP%20here:%20https://YOUR-WEBSITE-URL.com" target="_blank" rel="noopener" class="btn btn--solid" style="padding: 12px 24px; font-size: 0.7rem; margin: 0; background: #25D366; border-color: #25D366; color: white; display: flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share via WhatsApp
+        </a>
+      </div>
+
+      <!-- BASE LAYER CONTAINER: Interactive Filter & Structured Data Layout Table -->
+      <div class="dashboard-table-wrapper">
+        <div class="table-header-control-row">
+          <h3>Guest Response Roll Call</h3>
+          <div class="filter-group">
+            <button class="filter-tab active" data-filter="all">All Logs</button>
+            <button class="filter-tab" data-filter="yes">Confirmed</button>
+            <button class="filter-tab" data-filter="no">Declined</button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; width: 100%;">
+          <table class="data-table">
+            <thead>
+            <tr>
+              <th scope="col">Guest Name</th>
+              <th scope="col">Email Reference</th>
+              <th scope="col">Status</th>
+              <th scope="col">Relationship</th>
+              <th scope="col">Personal Note Left</th>
+            </tr>
+          </thead>
+            <tbody id="guestTableBody">
+              <tr>
+                <td colspan="5" style="text-align: center; padding: 48px; color: var(--choco-300); font-family: var(--serif); font-size: 1.2rem;">
+                  Initializing system handshake pipelines...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+            <!-- NEW: RELATIONSHIP BREAKDOWN SUMMARY TABLE -->
+      <div class="dashboard-table-wrapper" style="margin-top: 32px;">
+        <div class="table-header-control-row">
+          <h3>Attendee Breakdown</h3>
+        </div>
+        <div style="overflow-x: auto; width: 100%;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Relationship Category</th>
+                <th scope="col">Confirmed Attendees</th>
+              </tr>
+            </thead>
+            <tbody id="relationshipSummaryBody">
+              <tr>
+                <td colspan="2" style="text-align: center; padding: 24px; color: var(--choco-300);">Calculating breakdown...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+    <!-- FLOATING ADMIN WHATSAPP GROUP BUTTON -->
+  <a href="https://chat.whatsapp.com/YOUR_GROUP_INVITE_LINK" target="_blank" rel="noopener" class="floating-wa-admin" aria-label="Join Admin WhatsApp Group">
+    <svg viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="floating-wa-admin__text">Admin Group</span>
+  </a>
+  <!-- ===================== UNIFIED CORE SCRIPTS SYSTEM ===================== -->
+  <!-- 1. External Supabase Database Driver Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  
+  <!-- 2. Your project connection credentials configuration file -->
+  <script src="assets/js/supabase.js"></script>
+  
+  <!-- 3. Your theme and layout management framework engine -->
+  <script src="assets/js/main.js"></script>
+  
+  <!-- 4. The specific functional file for this page (e.g., admin.js, admin-login.js, or admin-register.js) -->
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

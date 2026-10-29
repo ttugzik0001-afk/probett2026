@@ -1,0 +1,18 @@
+probett/
+│
+├── index.html            # Public Home, Countdown & Event Overview
+├── registry.html         # Gift Registry & Bank Transfer Details
+│
+├── admin-login.html      # Secure Admin Login Screen
+├── admin-register.html   # Account Creation (with 25-min Security PIN check)
+├── admin.html            # RSVP Dashboard & 25-Min Security PIN Generator
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css     # Design Tokens, Palette Tints/Shades & Layouts
+│   └── js/
+│       ├── main.js       # Navigation & Mobile Drawer
+│       ├── supabase.js   # Supabase Client SDK Connection
+│       ├── admin-login.js# Auth Logic & Session Storage
+│       ├── admin-register.js # Security PIN Validation & Registration
+│       └── admin.js      # Dashboard Data Rendering & PIN Generator

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Registration — Bethel &amp; Promise</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ===================== MINIMAL UTILITY NAVIGATION ===================== -->
+  <header class="nav is-scrolled" style="top: 20px; padding: 0;">
+    <div class="nav__inner" style="border-radius: 100px;">
+      <a href="index.html" class="nav__brand" aria-label="Back home">
+        <img src="assets/images/logo.jpg" alt="Bethel &amp; Promise" class="nav__logo">
+      </a>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="admin-login.html" style="font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--choco-400); font-weight: 400;">&larr; Back to Login</a>
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CENTRAL SECURE REGISTER WORKSPACE ===================== -->
+  <main class="admin-main">
+    <div class="rsvp__wrap reveal in" style="max-width: 500px; margin: 0 auto;">
+      
+      <!-- STEP 1 CONTAINER: Account Details -->
+      <div id="registerStep1">
+        <div class="rsvp__head">
+          <div class="footer__mono" style="font-size: 2.5rem; margin-bottom: 0.5rem;">B<span>&amp;</span>P</div>
+          <h2>Create Operator</h2>
+          <p>Set up your administrator credentials to access system features.</p>
+          <div class="divider" style="margin: 16px auto 0;"><span></span><i></i><span></span></div>
+        </div>
+
+        <form id="registerForm" novalidate>
+          <div class="field" style="margin-bottom: 1.25rem;">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" placeholder="name@weddingops.com" required>
+          </div>
+          <div class="field" style="margin-bottom: 1.25rem;">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+          </div>
+          <div class="field" style="margin-bottom: 1.5rem;">
+            <label for="regConfirmPassword">Confirm Password</label>
+            <input type="password" id="regConfirmPassword" placeholder="Repeat password" required>
+          </div>
+
+          <div id="regErrorBlock" class="auth-error-message"></div>
+
+          <div class="rsvp__submit" style="margin-top: 1rem;">
+            <button type="submit" class="btn btn--solid" style="width: 100%; max-width: none;">Initialize Registration</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2 CONTAINER: Security PIN Verification (Hidden Initially) -->
+      <div id="registerStep2" style="display: none;">
+        <div class="rsvp__head">
+          <div class="footer__mono" style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--tan-600);">🔒</div>
+          <h2>Security Verification Required</h2>
+          <p>Enter the master security code to authorize account deployment.</p>
+          
+          <!-- Modern 25-Minute Countdown Clock -->
+          <div class="pin-timeout-block">
+            Session Expires In: <span id="pinTimer">25:00</span>
+          </div>
+          <div class="divider" style="margin: 16px auto 0;"><span></span><i></i><span></span></div>
+        </div>
+
+        <form id="pinForm" novalidate>
+          <div class="field" style="margin-bottom: 1.5rem;">
+            <label for="masterPin">Confirmation Code</label>
+            <input type="text" id="masterPin" placeholder="XXXXXX" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 0.3em; font-family: var(--serif);" required>
+          </div>
+
+          <div id="pinErrorBlock" class="auth-error-message"></div>
+
+          <div class="rsvp__submit" style="margin-top: 1rem;">
+            <button type="submit" class="btn btn--solid btn--gold" style="width: 100%; max-width: none;">Verify &amp; Activate Account</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-note" style="margin-top: 24px;">
+        Already registered? <a href="admin-login.html" style="color: var(--tan-600); text-decoration: underline; font-weight: 400;">Log In Here</a>
+      </div>
+
+    </div>
+  </main>  
+
+  <!-- ===================== UNIFIED CORE SCRIPTS SYSTEM ===================== -->
+  <!-- 1. External Supabase Database Driver Library (Using unpkg to avoid the infinite load bug) -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+  <!-- 2. Your project connection credentials configuration file -->
+  <script src="assets/js/supabase.js"></script>
+  
+  <!-- 3. Your theme and layout management framework engine -->
+  <script src="assets/js/main.js"></script>
+  
+  <!-- 4. The specific functional file for this registration screen -->
+  <script src="assets/js/admin-register.js"></script>
+</body>
+</html>
